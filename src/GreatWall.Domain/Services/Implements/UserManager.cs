@@ -265,6 +265,16 @@ namespace GreatWall.Domain.Services.Implements {
             result.ThrowIfError();
         }
 
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="user">用户</param>
+        /// <param name="newPassword">新密码</param>
+        public async Task ChangePasswordAsync( User user, string newPassword ) {
+            var result = await Manager.UpdatePasswordAsync( user, newPassword );
+            result.ThrowIfError();
+        }
+
         #endregion
 
         #region 查找用户

@@ -47,5 +47,20 @@ namespace GreatWall.Domain.Services.Implements {
                 return result;
             return await UpdateUserAsync( user );
         }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="user">用户</param>
+        /// <param name="newPassword">新密码</param>
+        public async Task<IdentityResult> UpdatePasswordAsync( User user, string newPassword ) {
+            ThrowIfDisposed();
+            if( user == null )
+                throw new ArgumentNullException( nameof( user ) );
+            var result = await UpdatePasswordHash( user, newPassword, true );
+            if( !result.Succeeded )
+                return result;
+            return await UpdateUserAsync( user );
+        }
     }
 }
